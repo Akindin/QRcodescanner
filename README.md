@@ -31,5 +31,5 @@ Create Web application that will allow users to read QR codes via camera or loca
   - File API
 
 ## Useful links
-- [TypeScript Docs]([https://duckduckgo.com](https://www.typescriptlang.org/docs/))
+- [TypeScript Docs](https://www.typescriptlang.org/docs/)
 - [React Docs](https://react.dev/learn)
