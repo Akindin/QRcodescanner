@@ -1,4 +1,6 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
+import debounce from "./../utils/debounce";
+
 
 export default function FileInput({ onFileAccepted, onFileRejected }: { onFileAccepted: (image: File) => void, onFileRejected: (message: string) => void }) {
     type ValiditySuccess = {
@@ -12,6 +14,7 @@ export default function FileInput({ onFileAccepted, onFileRejected }: { onFileAc
     type ValidityReport = ValiditySuccess | ValidityError;
 
     const inputRef = useRef<HTMLInputElement>(null);
+    const dropdownOverlayRef = useRef<HTMLDialogElement>(null);
 
 
     function getValidityReport(files: FileList): ValidityReport {
@@ -50,12 +53,7 @@ export default function FileInput({ onFileAccepted, onFileRejected }: { onFileAc
         }
     }
 
-    function handleChange() {
-        /* 
-            inputRef.current exists because function called
-            only in input with ref={inputRef}
-         */
-        const files = inputRef.current!.files;
+    function examineFiles(files: FileList | null | undefined) {
         if (files) {
             const validityReport = getValidityReport(files)
             if (validityReport.success) {
@@ -68,7 +66,48 @@ export default function FileInput({ onFileAccepted, onFileRejected }: { onFileAc
         }
     }
 
+    function handleChange() {
+        /* 
+            inputRef.current exists because function called
+            only in input with ref={inputRef}
+         */
+        const files = inputRef.current!.files;
+        examineFiles(files);
+    }
+
+    function dropHandler(event: DragEvent): void {
+        event.preventDefault();
+        dropdownOverlayRef.current?.close();
+        const files = event.dataTransfer?.files;
+        examineFiles(files);
+    }
+
+    const delayDropdownOverlay = debounce(function () {
+        dropdownOverlayRef.current?.close();
+    }, 100);
+
+    function dragOverHandler(event: Event) {
+        event.preventDefault();
+        dropdownOverlayRef.current?.showModal();
+        delayDropdownOverlay();
+    }
+
+    useEffect(() => {
+        document.addEventListener('dragover', dragOverHandler);
+        document.addEventListener('drop', dropHandler);
+
+        return () => {
+            document.removeEventListener('dragover', dragOverHandler);
+            document.removeEventListener('drop', dropHandler);
+        }
+    }, [dropdownOverlayRef]);
+
     return (
-        <input type="file" onChange={handleChange} ref={inputRef} />
+        <>
+            <input type="file" onChange={handleChange} ref={inputRef} />
+            <dialog ref={dropdownOverlayRef} className="dropdown_overlay">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae voluptas ratione consequatur quod a dolor inventore fuga cupiditate exercitationem architecto blanditiis commodi temporibus harum, nemo ab autem sint velit nisi!
+            </dialog>
+        </>
     )
 }
