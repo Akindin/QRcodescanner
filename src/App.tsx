@@ -3,6 +3,7 @@ import {
 } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import FileInput from "./components/FileInput";
 
 import {
     readBarcodesFromImageFile,
@@ -27,7 +28,7 @@ async function readImageFromInput(inputRef: MutableRefObject<HTMLInputElement>):
 function App() {
     return (
         <div className="App">
-            
+            <FileInput onFileAccepted={console.log} onFileRejected={console.log} />
         </div>
     );
 }
