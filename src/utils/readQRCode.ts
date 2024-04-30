@@ -24,7 +24,7 @@ export default async function readQRCode(image: File | ImageData, delay?: number
         recognition = await readBarcodesFromImageData(image)
     }
     if (delay) {
-        await wait(delay); // without delay page takes all resorces and doesn't close 
+        await wait(delay); // without delay page takes all resorces and page close button must be clicked twice in order to be closed 
     }
 
     return recognition.reduce(reduceReadResults, "")
