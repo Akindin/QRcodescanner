@@ -34,6 +34,7 @@ function App() {
     return (
         <div className="App">
             <FileInput onFileAccepted={handleFileAccept} onFileRejected={console.log} />
+            <Stream onOutputReceived={setOutput} />
             <Output type={getType()} content={output} />
         </div>
     );
