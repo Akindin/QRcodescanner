@@ -2,23 +2,9 @@ import logo from './logo.svg';
 import './App.css';
 import FileInput from "./components/FileInput";
 
-import {
-    readBarcodesFromImageFile,
-    readBarcodesFromImageData,
-    type ReadResult
-} from "zxing-wasm/reader";
+import readQRCode from "./utils/readQRCode";
 import { useState } from 'react';
 import Output from './components/Output';
-
-function reduceToString(accumulator: string, readResult: ReadResult): string {
-    return accumulator + readResult.text;
-}
-
-async function readImageFromFile(file: File): Promise<string> {
-    const recognition = await readBarcodesFromImageFile(file);
-    console.log(recognition);
-    return recognition.reduce(reduceToString, "");
-}
 
 
 function App() {
@@ -26,7 +12,7 @@ function App() {
     const [output, setOutput] = useState("");
 
     async function handleFileAccept(file: File) {
-        setOutput(await readImageFromFile(file));
+        setOutput(await readQRCode(file));
     }
 
     function getType(): "link" | "text" {
