@@ -8,13 +8,24 @@ function reduceReadResults(accumulator: string, readResult: ReadResult): string 
     return accumulator + readResult.text;
 }
 
-export default async function readQRCode(image: File | ImageData) {
+async function wait(ms: number): Promise<void> {
+    return new Promise(function (resolve, reject) {
+        setTimeout(() => {
+            resolve();
+        }, ms);
+    })
+}
+
+export default async function readQRCode(image: File | ImageData, delay?: number) {
     let recognition: ReadResult[];
     if (image instanceof File) {
         recognition = await readBarcodesFromImageFile(image);
     } else {
         recognition = await readBarcodesFromImageData(image)
     }
-    console.log(recognition);
+    if (delay) {
+        await wait(delay); // without delay page takes all resorces and doesn't close 
+    }
+
     return recognition.reduce(reduceReadResults, "")
 }
