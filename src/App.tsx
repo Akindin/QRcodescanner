@@ -1,10 +1,12 @@
-import logo from './logo.svg';
 import './App.css';
-import FileInput from "./components/FileInput";
+
+import { useState } from 'react';
 
 import readQRCode from "./utils/readQRCode";
-import { useState } from 'react';
+
+import FileInput from "./components/FileInput";
 import Output from './components/Output';
+import Stream from './components/Stream';
 
 
 function App() {
@@ -18,7 +20,7 @@ function App() {
     function getType(): "link" | "text" {
         // [-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)
         // https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)
-        const regex = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/gi;
+        const regex = /[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/gi;
 
         if (output.match(regex)) {
             return "link";
@@ -26,6 +28,8 @@ function App() {
             return "text";
         }
     }
+
+
 
     return (
         <div className="App">
