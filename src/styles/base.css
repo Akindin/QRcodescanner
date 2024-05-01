@@ -55,6 +55,7 @@ main .input_box > p {
 
 .button {
     display: inline-block;
+    text-align: center;
     padding: 10px 20px;
     color: #ffffff;
     border: none;
