@@ -23,7 +23,7 @@ main {
     height: 100%;
 }
 
-main > section.input_box {
+main .input_box {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -37,7 +37,7 @@ main > section.input_box {
     margin-top: 2em;
 }
 
-main > section.input_box > p {
+main .input_box > p {
     color: #606060;
     font-style: italic;
     text-overflow: clip;
@@ -51,7 +51,6 @@ main > section.input_box > p {
     width: 100%;
     margin-top: 1.5em;
     margin-bottom: 1.5em;
-
 }
 
 /* Hide the default file input */
@@ -97,7 +96,7 @@ main > section.input_box > p {
 
 }
 
-main section.output_box {
+main .output_box {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -111,7 +110,7 @@ main section.output_box {
     margin-top: 2em;
 }
 
-main section.output_box > p {
+main .output_box > p {
     color: black;
     text-overflow: clip;
     font-size: 1.5em;
