@@ -87,6 +87,7 @@ export default function Output({ content }: { content: string }) {
             switch (parsedURL.protocol as string) {
                 case "http":
                 case "https":
+                    result["Тип"] = "Ссылка";
                     result["Ссылка"] = parsedURL.href;
                     result["Протокол"] = parsedURL.protocol;
                     result["Хост"] = parsedURL.host;
@@ -95,8 +96,8 @@ export default function Output({ content }: { content: string }) {
                     }
                     break;
                 case "mailto":
+                    result["Тип"] = "Письмо";
                     result["Ссылка"] = parsedURL.href;
-                    result["Протокол"] = parsedURL.protocol;
                     result["Получатель"] = parsedURL.pathname;
                     if (parsedURL.search) {
                         result["Тема письма"] = parsedURL.query["subject"];
@@ -106,21 +107,21 @@ export default function Output({ content }: { content: string }) {
                     }
                     break;
                 case "tel":
+                    result["Тип"] = "Телефон";
                     result["Ссылка"] = parsedURL.href;
-                    result["Протокол"] = parsedURL.protocol;
                     result["Номер телефона"] = parsedURL.pathname;
                     break;
                 case "sms":
+                    result["Тип"] = "СМС";
                     result["Ссылка"] = parsedURL.href;
-                    result["Протокол"] = parsedURL.protocol;
                     result["Номер телефона"] = parsedURL.pathname;
                     if (parsedURL.search) {
                         result["Содержимое смс"] = parsedURL.query["body"];
                     }
                     break;
                 case "wifi":
+                    result["Тип"] = "Wi-Fi";
                     result["Ссылка"] = parsedURL.href;
-                    result["Протокол"] = parsedURL.protocol;
                     const parsedWiFi = parseWiFi(parsedURL.pathname);
                     result["SSID"] = parsedWiFi["s"];
                     result["Пароль"] = parsedWiFi["p"];
