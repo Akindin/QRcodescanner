@@ -82,6 +82,16 @@ export default function Output({ content }: { content: string }) {
                         result["Поиск"] = parsedURL.query["text"];
                     }
                     break;
+                case "mailto":
+                    result["Ссылка"] = parsedURL.href;
+                    result["Протокол"] = parsedURL.protocol;
+                    result["Получатель"] = parsedURL.pathname;
+                    if (parsedURL.search) {
+                        result["Тема письма"] = parsedURL.query["subject"];
+                        result["Вторичные получатели"] = parsedURL.query["cc"];
+                        result["Скрытые получатели"] = parsedURL.query["bcc"];
+                    }
+                    break;
                 default:
                     return raw;
             }
