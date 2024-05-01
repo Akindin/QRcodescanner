@@ -33,7 +33,6 @@ export default function Output({ content }: { content: string }) {
     }
 
     function parseWiFi(wifi: string) {
-        wifi = wifi.toLowerCase();
         const result: {
             [index: string]: string
         } = {};
@@ -99,9 +98,9 @@ export default function Output({ content }: { content: string }) {
                     result["Тип"] = "Wi-Fi";
                     result["Ссылка"] = parsedURL.href;
                     const parsedWiFi = parseWiFi(parsedURL.pathname);
-                    result["SSID"] = parsedWiFi["s"];
-                    result["Пароль"] = parsedWiFi["p"];
-                    result["Защита"] = parsedWiFi["t"];
+                    result["SSID"] = parsedWiFi["s"] ?? parsedWiFi["S"];
+                    result["Пароль"] = parsedWiFi["p"] ?? parsedWiFi["P"];
+                    result["Защита"] = parsedWiFi["t"] ?? parsedWiFi["T"];
                     break;
                 default:
                     return raw;
