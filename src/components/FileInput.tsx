@@ -28,7 +28,7 @@ export default function FileInput({ onFileAccepted, onFileRejected }: { onFileAc
         } else {
             const file = files.item(0);
             if (file!.size > 1024 ** 3 * 8) {
-                errorMessage = "Ошибка!\nФайл слишком большой\nмаксимальный размер файла 32 Мб."
+                errorMessage = "Ошибка!\nФайл слишком большой\nмаксимальный размер файла 1 Гб."
             } else {
                 switch (file!.type) {
                     case "image/png":
