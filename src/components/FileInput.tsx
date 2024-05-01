@@ -104,19 +104,10 @@ export default function FileInput({ onFileAccepted, onFileRejected }: { onFileAc
 
     return (
         <>
-            <div id="buttons">
-                <label htmlFor="load_file" className="custom_button custom_load_file">Select a File</label>
-                <input id="load_file" type="file" onChange={handleChange} ref={inputRef} hidden />
-            </div>
-
-            <section className="output_box"> 
-                <p>
-                This field will contain information retrieved from the scanned QR code.
-                </p>
-            </section>
-
+            <label htmlFor="load_file" className="custom_button custom_load_file">Select a File</label>
+            <input id="load_file" type="file" onChange={handleChange} ref={inputRef} hidden />
             <dialog ref={dropdownOverlayRef} className="dropdown_overlay">
-                Drag and drop the file anywhere on the screen. 
+                Drag and drop the file anywhere on the screen.
                 Valid extensions: PNG, JPEG, JPG.
             </dialog>
         </>
