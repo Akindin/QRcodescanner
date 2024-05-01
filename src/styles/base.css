@@ -1,13 +1,14 @@
 @import url(./fonts.css);
 
 body {
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 div.App {
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Устанавливаем минимальную высоту body равной высоте видимой области браузера */
+    min-height: 100vh;
+    /* Устанавливаем минимальную высоту body равной высоте видимой области браузера */
     margin: 0;
 }
 
@@ -63,119 +64,120 @@ main {
 }
 
 main > section.input_box {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-left: 1.25em;
-  padding-right: 1.25em;
-  height: 40vh;
-  width: 100%;
-  border: lightgray 0.25em dashed;
-  border-radius: 1em;
-  background-color: #f4f4f4;
-  margin-top: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 1.25em;
+    padding-right: 1.25em;
+    height: 40vh;
+    width: 100%;
+    border: lightgray 0.25em dashed;
+    border-radius: 1em;
+    background-color: #f4f4f4;
+    margin-top: 2em;
 }
 
 main > section.input_box > p {
-  color: #606060;
-  font-style: italic;
-  text-overflow: clip;
-  font-size: 2em;
+    color: #606060;
+    font-style: italic;
+    text-overflow: clip;
+    font-size: 2em;
 }
 
-#buttons {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  margin-top: 1.5em;
-  margin-bottom: 1.5em;
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
 
 }
 
 /* Hide the default file input */
 #load_file {
-  display: none;
+    display: none;
 }
 
 .custom_button {
-  display: inline-block;
-  padding: 10px 20px;
-  color: #ffffff;
-  border: none;
-  border-radius: 0.5em;
-  cursor: pointer;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  font-size: 2em;
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
-  min-width: 48.5%;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #ffffff;
+    border: none;
+    border-radius: 0.5em;
+    cursor: pointer;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 2em;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    min-width: 48.5%;
 }
 
 
 .custom_button {
-  background-color: #808080;
-  border: 1px solid #808080;  
+    background-color: #808080;
+    border: 1px solid #808080;
 }
 
 .custom_button:hover {
-  background-color: #606060;
+    background-color: #606060;
 }
 
 /* Hide the default file input */
 #open_camera {
-  display: none;
+    display: none;
 }
 
 .custom_open_camera {
-  background-color: #e5322d;
-  border: 1px solid #e5322d;
+    background-color: #e5322d;
+    border: 1px solid #e5322d;
 }
 
 .custom_open_camera:hover {
-  background-color: #c00;
+    background-color: #c00;
 
 }
 
 main section.output_box {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-left: 1.25em;
-  padding-right: 1.25em;
-  height: 20vh;
-  width: 100%;
-  border: lightgray 0.125em solid;
-  border-radius: 1em;
-  background-color: #f6f6f6;
-  margin-top: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 1.25em;
+    padding-right: 1.25em;
+    height: 20vh;
+    width: 100%;
+    border: lightgray 0.125em solid;
+    border-radius: 1em;
+    background-color: #f6f6f6;
+    margin-top: 2em;
 }
 
 main section.output_box > p {
-  color: black;
-  text-overflow: clip;
-  font-size: 1.5em;
-  text-align: justify;
+    color: black;
+    text-overflow: clip;
+    font-size: 1.5em;
+    text-align: justify;
 }
 
 
 footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  height: 2em;
-  box-shadow: 0 -3px 6px 0 rgba(2, 2, 2, .1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    height: 2em;
+    box-shadow: 0 -3px 6px 0 rgba(2, 2, 2, .1);
 }
 
 
 footer a {
-  color: black;
-  text-decoration: none; /* no underline */
+    color: black;
+    text-decoration: none;
+    /* no underline */
 }
 
 footer a:hover {
-  color: #e5322d;
-  text-decoration: underline;
+    color: #e5322d;
+    text-decoration: underline;
 }
 
 /* Я СТИЛИЗИРОВАЛ ЭТОТ СЕЛЕКТОР, НО КОГДА Я ЕГО ВКЛЮЧАЮ, ДРОПДАУН ОКОШКО НЕ ПРОПАДАЕТ. НУЖНО СДЕЛАТЬ ТАК, ЧТОБЫ ЭТИ СТИЛИ ОТКЛЮЧАЛИСЬ ПОСЛЕ ПЕРЕТЯГИВАНИЯ ФАЙЛА */
