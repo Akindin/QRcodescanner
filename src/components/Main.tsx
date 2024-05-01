@@ -5,12 +5,14 @@ import Preview from "./Preview";
 import Output from "./Output";
 
 import readQRCode from "../utils/readQRCode";
+import PreviewContent from "./../utils/PreviewContent";
 
 import { useState } from 'react';
 
-
 export default function Main() {
     const [output, setOutput] = useState("");
+
+    const [preview, setPreview] = useState<PreviewContent>();
 
     function getType(): "link" | "text" {
         // [-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)
@@ -25,15 +27,27 @@ export default function Main() {
     }
 
 
+
     async function handleFileAccept(file: File) {
+        setPreview({
+            type: "file",
+            content: file
+        });
         setOutput(await readQRCode(file));
+    }
+
+    function handleFileReject(message: string) {
+        setPreview({
+            type: "error",
+            content: message
+        })
     }
 
     return (
         <main>
-            <Preview />
+            <Preview previewContent={preview} />
             <div className='buttons'>
-                <FileInput onFileAccepted={handleFileAccept} onFileRejected={console.log} />
+                <FileInput onFileAccepted={handleFileAccept} onFileRejected={handleFileReject} />
                 <StreamInput />
             </div>
             <Output type={getType()} content={output} />
