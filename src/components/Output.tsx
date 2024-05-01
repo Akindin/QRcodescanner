@@ -93,6 +93,11 @@ export default function Output({ content }: { content: string }) {
                         result["Содержимое письма"] = parsedURL.query["body"];
                     }
                     break;
+                case "tel":
+                    result["Ссылка"] = parsedURL.href;
+                    result["Протокол"] = parsedURL.protocol;
+                    result["Номер телефона"] = parsedURL.pathname;
+                    break;
                 default:
                     return raw;
             }
