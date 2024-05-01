@@ -10,28 +10,6 @@ export default function Output({ content }: { content: string }) {
         navigator.clipboard.writeText(copiedText ?? "undefined");
     }
 
-
-
-    // function getType(content: string) {
-    //     // [-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)
-    //     // https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)
-    //     const regex = /[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/gi;
-
-    //     console.log(content.match(regex))
-
-    //     try {
-    //         console.log(parseUrl(content));
-    //     } catch (error) {
-    //         console.log(error)
-    //     }
-
-    //     if (content.match(regex)) {
-    //         return "link";
-    //     } else {
-    //         return "text";
-    //     }
-    // }
-
     function mapEntries([key, value]: [string, string]) {
         function getValue() {
             if (key === "Ссылка") {
@@ -49,8 +27,6 @@ export default function Output({ content }: { content: string }) {
             </tr>
         )
     }
-
-    // let type = getType(content);
 
     function getTSX() {
         return Object.entries(getContentData(content)).map(mapEntries);
