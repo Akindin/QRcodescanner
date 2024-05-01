@@ -11,22 +11,7 @@ import { useState } from 'react';
 
 export default function Main() {
     const [output, setOutput] = useState("");
-
     const [preview, setPreview] = useState<PreviewContent>();
-
-    function getType(): "link" | "text" {
-        // [-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)
-        // https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)
-        const regex = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/gi;
-
-        if (output.match(regex)) {
-            return "link";
-        } else {
-            return "text";
-        }
-    }
-
-
 
     async function handleFileAccept(file: File) {
         setPreview({
@@ -50,7 +35,7 @@ export default function Main() {
                 <FileInput onFileAccepted={handleFileAccept} onFileRejected={handleFileReject} />
                 <StreamInput />
             </div>
-            <Output type={getType()} content={output} />
+            <Output content={output} />
         </main>
     )
 }
