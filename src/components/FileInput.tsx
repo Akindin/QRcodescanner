@@ -1,7 +1,5 @@
 import { useEffect, useRef } from "react";
 import debounce from "./../utils/debounce";
-import logo from '../img/logo512.png';
-
 
 
 export default function FileInput({ onFileAccepted, onFileRejected }: { onFileAccepted: (image: File) => void, onFileRejected: (message: string) => void }) {
@@ -106,44 +104,21 @@ export default function FileInput({ onFileAccepted, onFileRejected }: { onFileAc
 
     return (
         <>
-        <header>
-            <img src={logo} alt="QR Code Scanner"/>
-
-                <div className="logo">
-                    <p className="logo-text"> QR Code Scanner </p>
-                </div>
-               
-        </header>
-        <main>
-            <section id="input_box">
-                <p>
-                In order to scan the QR code, please select the file on your computer or turn on the camera on your device.
-                </p>
-            </section>
             <div id="buttons">
-                <label htmlFor="load_file" id="custom_load_file" className="custom_button">Select a File</label>
-                <input id="load_file" type="file" onChange={handleChange} ref={inputRef} style={{ display: 'none' }} />
-
-                <label htmlFor="open_camera" id="custom_open_camera" className="custom_button">Open Camera</label>
-                <input id="open_camera" type="file" onChange={handleChange} ref={inputRef} style={{ display: 'none' }} />
-
+                <label htmlFor="load_file" className="custom_button custom_load_file">Select a File</label>
+                <input id="load_file" type="file" onChange={handleChange} ref={inputRef} hidden />
             </div>
 
-            <section id="output_box"> 
+            <section className="output_box"> 
                 <p>
                 This field will contain information retrieved from the scanned QR code.
                 </p>
             </section>
 
             <dialog ref={dropdownOverlayRef} className="dropdown_overlay">
-                Drag and drop the file anywhere on the screen
+                Drag and drop the file anywhere on the screen. 
+                Valid extensions: PNG, JPEG, JPG.
             </dialog>
-
-
-        </main>
-        <footer>
-            <p>&copy; ITPelag 2024 // made by <a href="https://github.com/Akindin">Viktor Kudin</a> and <a href="https://github.com/noidoRG">Rodion Gladyshev</a> </p>
-        </footer>
         </>
 
     )
