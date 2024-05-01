@@ -1,0 +1,12 @@
+dialog {
+    display: none;
+}
+
+dialog[open] {
+    display: flex;
+}
+
+[hidden] {
+    display: none;
+}
+
