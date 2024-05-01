@@ -90,6 +90,7 @@ export default function Output({ content }: { content: string }) {
                         result["Тема письма"] = parsedURL.query["subject"];
                         result["Вторичные получатели"] = parsedURL.query["cc"];
                         result["Скрытые получатели"] = parsedURL.query["bcc"];
+                        result["Содержимое письма"] = parsedURL.query["body"];
                     }
                     break;
                 default:
