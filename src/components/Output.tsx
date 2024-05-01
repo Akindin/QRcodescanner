@@ -1,6 +1,5 @@
 import parseUrl from "parse-url";
 import { MouseEvent } from "react";
-type URISchemaType = "link" | "text" | "sms" | "phone" | "wifi" | "javascript"
 
 
 
@@ -13,78 +12,85 @@ export default function Output({ content }: { content: string }) {
 
 
 
-    function getType(content: string): URISchemaType {
-        // [-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)
-        // https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)
-        const regex = /[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/gi;
+    // function getType(content: string) {
+    //     // [-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)
+    //     // https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)
+    //     const regex = /[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/gi;
 
-        console.log(content.match(regex))
+    //     console.log(content.match(regex))
 
-        try {
-            console.log(parseUrl(content));
-        } catch (error) {
-            console.log(error)
+    //     try {
+    //         console.log(parseUrl(content));
+    //     } catch (error) {
+    //         console.log(error)
+    //     }
+
+    //     if (content.match(regex)) {
+    //         return "link";
+    //     } else {
+    //         return "text";
+    //     }
+    // }
+
+    function mapEntries([key, value]: [string, string]) {
+        function getValue() {
+            if (key === "Ссылка") {
+                return <a href={value} target="_blank" rel="noreferrer">{value}</a>
+            } else {
+                return <>{value}</>
+            }
         }
 
-        if (content.match(regex)) {
-            return "link";
-        } else {
-            return "text";
-        }
+        return (
+            <tr key={key}>
+                <td>{key}</td>
+                <td data-id={key}>{getValue()}</td>
+                <td><button onClick={copyToClipboard} data-for={key}>Скопировать в буфер обмена</button></td>
+            </tr>
+        )
     }
 
-    let type: URISchemaType = getType(content);
+    // let type = getType(content);
 
-    function getContentData() {
-        if (type === "text") {
-            return (
-                <tr>
-                    <td>Результат</td>
-                    <td>{content}</td>
-                    <td><button onClick={copyToClipboard}>Скопировать в буфер обмена</button></td>
-                </tr>
-            )
-        } else {
+    function getTSX() {
+        return Object.entries(getContentData(content)).map(mapEntries);
+    }
 
-            function mapEntries([key, value]: [string, any]) {
-                return (
-                    <tr>
-                        <td>{key}</td>
-                        <td data-id={key}>{value.toString()}</td>
-                        <td><button onClick={copyToClipboard} data-for={key}>Скопировать в буфер обмена</button></td>
-                    </tr>
-                )
+
+
+    function getContentData(content: string): object {
+        const raw = {
+            "Результат": content
+        }
+        try {
+            const parsedURL = parseUrl(content);
+            console.log(parsedURL);
+            const result: {
+                [index: string]: string
+            } = {};
+
+
+            // "link" | "text" | "sms" | "phone" | "wifi" | "javascript"
+            // It parses not only links but protocol definition contains only "http" | "https" | "ssh" | "file" | "git"
+            switch (parsedURL.protocol as string) {
+                case "http":
+                case "https":
+                    result["Ссылка"] = parsedURL.href;
+                    result["Протокол"] = parsedURL.protocol;
+                    result["Хост"] = parsedURL.host;
+                    if (parsedURL.search) {
+                        result["Поиск"] = parsedURL.query["text"];
+                    }
+                    break;
+                default:
+                    return raw;
             }
 
-            console.log(Object.entries(parseUrl(content)).map(mapEntries))
+            return result;
 
-            return [...Object.entries(parseUrl(content)).map(mapEntries)];
 
-            // console.log(
-            //     [<tr>
-            //         <td>Результат</td>
-            //         <td><a href={content}>{content}</a></td>
-            //         <td><button onClick={copyToClipboard}>Скопировать в буфер обмена</button></td>
-            //     </tr>,
-            //     <tr>
-            //         <td>Результат</td>
-            //         <td><a href={content}>{content}</a></td>
-            //         <td><button onClick={copyToClipboard}>Скопировать в буфер обмена</button></td>
-            //     </tr>]
-            // )
-
-            // return (
-            //     [<tr>
-            //         <td>Результат</td>
-            //         <td><a href={content}>{content}</a></td>
-            //         <td><button onClick={copyToClipboard}>Скопировать в буфер обмена</button></td>
-            //     </tr>,
-            //     <tr>
-            //         <td>Результат</td>
-            //         <td><a href={content}>{content}</a></td>
-            //         <td><button onClick={copyToClipboard}>Скопировать в буфер обмена</button></td>
-            //     </tr>]
-            // )
+        } catch (error) {
+            return raw;
         }
     }
 
@@ -93,7 +99,7 @@ export default function Output({ content }: { content: string }) {
         <output>
             <table>
                 <tbody>
-                    {getContentData()}
+                    {getTSX()}
                 </tbody>
             </table>
         </output>
