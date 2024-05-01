@@ -21,7 +21,6 @@ import Footer from "./components/Footer";
 //     return recognition.reduce(reduceToString, "");
 // }
 
-
 function App() {
 
     // const [output, setOutput] = useState("");
