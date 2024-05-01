@@ -56,6 +56,18 @@ export default function Output({ content }: { content: string }) {
         return Object.entries(getContentData(content)).map(mapEntries);
     }
 
+    function parseWiFi(wifi: string) {
+        wifi = wifi.toLowerCase();
+        const result: {
+            [index: string]: string
+        } = {};
+        while (wifi.indexOf(":") !== -1) {
+            result[wifi.slice(0, wifi.indexOf(":"))] = wifi.slice(wifi.indexOf(":") + 1, wifi.indexOf(";"));
+            wifi = wifi.slice(wifi.indexOf(";") + 1);
+        }
+        return result;
+    }
+
 
 
     function getContentData(content: string): object {
@@ -105,6 +117,14 @@ export default function Output({ content }: { content: string }) {
                     if (parsedURL.search) {
                         result["Содержимое смс"] = parsedURL.query["body"];
                     }
+                    break;
+                case "wifi":
+                    result["Ссылка"] = parsedURL.href;
+                    result["Протокол"] = parsedURL.protocol;
+                    const parsedWiFi = parseWiFi(parsedURL.pathname);
+                    result["SSID"] = parsedWiFi["s"];
+                    result["Пароль"] = parsedWiFi["p"];
+                    result["Защита"] = parsedWiFi["t"];
                     break;
                 default:
                     return raw;
