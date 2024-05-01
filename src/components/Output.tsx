@@ -98,6 +98,14 @@ export default function Output({ content }: { content: string }) {
                     result["Протокол"] = parsedURL.protocol;
                     result["Номер телефона"] = parsedURL.pathname;
                     break;
+                case "sms":
+                    result["Ссылка"] = parsedURL.href;
+                    result["Протокол"] = parsedURL.protocol;
+                    result["Номер телефона"] = parsedURL.pathname;
+                    if (parsedURL.search) {
+                        result["Содержимое смс"] = parsedURL.query["body"];
+                    }
+                    break;
                 default:
                     return raw;
             }
