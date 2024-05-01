@@ -108,6 +108,7 @@ export default function FileInput({ onFileAccepted, onFileRejected }: { onFileAc
             <input id="load_file" type="file" onChange={handleChange} ref={inputRef} hidden />
             <dialog ref={dropdownOverlayRef} className="dropdown_overlay">
                 Drag and drop the file anywhere on the screen.
+                <br />
                 Valid extensions: PNG, JPEG, JPG.
             </dialog>
         </>
