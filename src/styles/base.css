@@ -1,0 +1,147 @@
+@import url(./fonts.css);
+@import url(./header.css);
+@import url(./footer.css);
+
+body {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+div.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  /* Устанавливаем минимальную высоту body равной высоте видимой области браузера */
+  margin: 0;
+}
+
+main {
+  flex-direction: column;
+  flex: 1;
+  padding-bottom: 5rem;
+  padding-left: 10vmax;
+  padding-right: 10vmax;
+  height: 100%;
+}
+
+main .preview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 1.25em;
+  padding-right: 1.25em;
+  height: 40vh;
+  width: 100%;
+  border: lightgray 0.25em dashed;
+  border-radius: 1em;
+  background-color: #f4f4f4;
+  margin-top: 2em;
+}
+
+main .preview>p {
+  color: #606060;
+  font-style: italic;
+  text-overflow: clip;
+  font-size: 2em;
+}
+
+main .preview :only-child {
+  max-height: 90%;
+  max-width: 90%;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+
+.button {
+  display: inline-block;
+  text-align: center;
+  padding: 10px 20px;
+  color: #ffffff;
+  border: none;
+  border-radius: 0.5em;
+  cursor: pointer;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 2em;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+  min-width: 48.5%;
+}
+
+
+.button {
+  background-color: #808080;
+  border: 1px solid #808080;
+}
+
+.button:hover {
+  background-color: #606060;
+}
+
+/* Hide the default file input */
+#open_camera {
+  display: none;
+}
+
+.open_camera {
+  background-color: #e5322d;
+  border: 1px solid #e5322d;
+}
+
+.open_camera:hover {
+  background-color: #c00;
+
+}
+
+main .output_box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 1.25em;
+  padding-right: 1.25em;
+  height: 20vh;
+  width: 100%;
+  border: lightgray 0.125em solid;
+  border-radius: 1em;
+  background-color: #f6f6f6;
+  margin-top: 2em;
+}
+
+main .output_box>p {
+  color: black;
+  text-overflow: clip;
+  font-size: 1.5em;
+  text-align: justify;
+}
+
+
+
+/* Я СТИЛИЗИРОВАЛ ЭТОТ СЕЛЕКТОР, НО КОГДА Я ЕГО ВКЛЮЧАЮ, ДРОПДАУН ОКОШКО НЕ ПРОПАДАЕТ. НУЖНО СДЕЛАТЬ ТАК, ЧТОБЫ ЭТИ СТИЛИ ОТКЛЮЧАЛИСЬ ПОСЛЕ ПЕРЕТЯГИВАНИЯ ФАЙЛА */
+.dropdown_overlay {
+  overflow: visible;
+  text-align: center;
+  /* Центрируем текст */
+  font-size: 4em;
+  color: #f4f4f4;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  box-sizing: border-box;
+  background: transparent;
+  margin: auto;
+  border: none;
+  width: 50vw;
+  height: 30vh;
+}
+
+.dropdown_overlay::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+@media(max-width: 1000px) {
+  .dropdown_overlay {
+    font-size: 2em;
+  }
+}

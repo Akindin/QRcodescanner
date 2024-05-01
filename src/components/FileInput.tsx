@@ -28,7 +28,7 @@ export default function FileInput({ onFileAccepted, onFileRejected }: { onFileAc
         } else {
             const file = files.item(0);
             if (file!.size > 1024 ** 3 * 8) {
-                errorMessage = "Ошибка!\nФайл слишком большой\nмаксимальный размер файла 32 Мб."
+                errorMessage = "Ошибка!\nФайл слишком большой\nмаксимальный размер файла 1 Гб."
             } else {
                 switch (file!.type) {
                     case "image/png":
@@ -104,10 +104,14 @@ export default function FileInput({ onFileAccepted, onFileRejected }: { onFileAc
 
     return (
         <>
-            <input type="file" onChange={handleChange} ref={inputRef} />
+            <label htmlFor="load_file" className="button">Select a File</label>
+            <input id="load_file" type="file" onChange={handleChange} ref={inputRef} hidden />
             <dialog ref={dropdownOverlayRef} className="dropdown_overlay">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae voluptas ratione consequatur quod a dolor inventore fuga cupiditate exercitationem architecto blanditiis commodi temporibus harum, nemo ab autem sint velit nisi!
+                Drag and drop the file anywhere on the screen.
+                <br />
+                Valid extensions: PNG, JPEG, JPG.
             </dialog>
         </>
+
     )
 }

@@ -1,31 +1,15 @@
-import './App.css';
+import Header from "./components/Header";
+import Main from "./components/Main";
+import Footer from "./components/Footer";
 
-import { useState } from 'react';
+export default function App() {
 
-import readQRCode from "./utils/readQRCode";
-
-import FileInput from "./components/FileInput";
-import Output from './components/Output';
-import Stream from './components/Stream';
-
-
-function App() {
-
-    const [output, setOutput] = useState("");
-
-    async function handleFileAccept(file: File) {
-        setOutput(await readQRCode(file));
-    }
-
-
-
+   
     return (
         <div className="App">
-            <FileInput onFileAccepted={handleFileAccept} onFileRejected={console.log} />
-            <Stream onOutputReceived={setOutput} />
-            <Output content={output} />
+            <Header />
+            <Main />
+            <Footer />
         </div>
     );
 }
-
-export default App;
