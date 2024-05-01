@@ -53,12 +53,7 @@ main .input_box > p {
     margin-bottom: 1.5em;
 }
 
-/* Hide the default file input */
-#load_file {
-    display: none;
-}
-
-.custom_button {
+.button {
     display: inline-block;
     padding: 10px 20px;
     color: #ffffff;
@@ -72,12 +67,12 @@ main .input_box > p {
 }
 
 
-.custom_button {
+.button {
     background-color: #808080;
     border: 1px solid #808080;
 }
 
-.custom_button:hover {
+.button:hover {
     background-color: #606060;
 }
 
@@ -86,12 +81,12 @@ main .input_box > p {
     display: none;
 }
 
-.custom_open_camera {
+.open_camera {
     background-color: #e5322d;
     border: 1px solid #e5322d;
 }
 
-.custom_open_camera:hover {
+.open_camera:hover {
     background-color: #c00;
 
 }

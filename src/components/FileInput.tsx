@@ -104,7 +104,7 @@ export default function FileInput({ onFileAccepted, onFileRejected }: { onFileAc
 
     return (
         <>
-            <label htmlFor="load_file" className="custom_button custom_load_file">Select a File</label>
+            <label htmlFor="load_file" className="button">Select a File</label>
             <input id="load_file" type="file" onChange={handleChange} ref={inputRef} hidden />
             <dialog ref={dropdownOverlayRef} className="dropdown_overlay">
                 Drag and drop the file anywhere on the screen.
