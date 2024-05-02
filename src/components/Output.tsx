@@ -114,6 +114,11 @@ export default function Output({ content }: { content: string }) {
                     result["Пароль"] = parsedWiFi["p"] ?? parsedWiFi["P"];
                     result["Защита"] = parsedWiFi["t"] ?? parsedWiFi["T"];
                     break;
+                case "javascript":
+                    result["Тип"] = "JS код";
+                    result["Ссылка"] = parsedURL.href;
+                    result["Код"] = parsedURL.pathname;
+                    break;
                 default:
                     return raw;
             }
