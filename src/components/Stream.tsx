@@ -6,7 +6,7 @@ export default function Stream({ onOutputReceived }: { onOutputReceived: (output
     const videoRef = useRef<HTMLVideoElement>(null);
     const [stream, setStream] = useState()
 
-
+    
     async function getStream(): Promise<MediaStream | null> {
         try {
             return await navigator.mediaDevices.getUserMedia({ video: true, audio: false })

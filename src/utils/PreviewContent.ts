@@ -4,6 +4,9 @@ type PreviewContent = {
 } | {
     type: "error",
     content: string
+} | {
+    type: "stream",
+    content: MediaStream
 };
 
 export default PreviewContent;

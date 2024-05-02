@@ -56,6 +56,10 @@ export default function Output({ content }: { content: string }) {
     }
 
     function getContentData(content: string): object {
+        if (content === "") {
+            return {};
+        }
+
         const raw = {
             "Результат": content
         }
