@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useRef } from "react";
 import debounce from "./../utils/debounce";
 
@@ -100,7 +101,7 @@ export default function FileInput({ onFileAccepted, onFileRejected }: { onFileAc
             document.removeEventListener('dragover', dragOverHandler);
             document.removeEventListener('drop', dropHandler);
         }
-    }, [dropdownOverlayRef]);
+    }, [dragOverHandler, dropHandler, dropdownOverlayRef]);
 
     return (
         <>
