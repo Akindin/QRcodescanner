@@ -55,8 +55,6 @@ export default function Output({ content }: { content: string }) {
         return result;
     }
 
-
-
     function getContentData(content: string): object {
         const raw = {
             "Результат": content
@@ -68,8 +66,6 @@ export default function Output({ content }: { content: string }) {
                 [index: string]: string
             } = {};
 
-
-            // "link" | "text" | "sms" | "phone" | "wifi" | "javascript"
             // It parses not only links but protocol definition contains only "http" | "https" | "ssh" | "file" | "git"
             switch (parsedURL.protocol as string) {
                 case "http":
@@ -122,15 +118,12 @@ export default function Output({ content }: { content: string }) {
                 default:
                     return raw;
             }
-
             return result;
-
 
         } catch (error) {
             return raw;
         }
     }
-
 
     return (
         <output>
