@@ -52,12 +52,6 @@ export default function Output({ content }: { content: string }) {
             start = nonEscapedSemicolon.lastIndex;
         }
 
-        console.log(wifi);
-        console.log(result);
-        // while (wifi.indexOf(":") !== -1) {
-        //     result[wifi.slice(0, wifi.indexOf(":"))] = wifi.slice(wifi.indexOf(":") + 1, wifi.indexOf(";"));
-        //     wifi = wifi.slice(wifi.indexOf(";") + 1);
-        // }
         return result;
     }
 
