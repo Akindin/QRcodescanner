@@ -2,7 +2,6 @@ import parseUrl from "parse-url";
 import { MouseEvent } from "react";
 
 
-
 export default function Output({ content }: { content: string }) {
     function copyToClipboard(event: MouseEvent) {
         const button = event.target as HTMLButtonElement;
@@ -33,13 +32,32 @@ export default function Output({ content }: { content: string }) {
     }
 
     function parseWiFi(wifi: string) {
+        const nonEscapedСolon = /[^\\](:)/g;
+        const nonEscapedSemicolon = /[^\\](;)/g;
+
+
         const result: {
             [index: string]: string
         } = {};
-        while (wifi.indexOf(":") !== -1) {
-            result[wifi.slice(0, wifi.indexOf(":"))] = wifi.slice(wifi.indexOf(":") + 1, wifi.indexOf(";"));
-            wifi = wifi.slice(wifi.indexOf(";") + 1);
+
+        let start = 0;
+        while (true) {
+            if (nonEscapedСolon.exec(wifi) === null) {
+                break;
+            }
+            nonEscapedSemicolon.exec(wifi);
+            result[wifi.slice(start, nonEscapedСolon.lastIndex - 1)] = wifi.slice(nonEscapedСolon.lastIndex, nonEscapedSemicolon.lastIndex - 1).replaceAll(/\\,|\\;|\\\/|\\:/g, (a) => {
+                return a.charAt(1);
+            });
+            start = nonEscapedSemicolon.lastIndex;
         }
+
+        console.log(wifi);
+        console.log(result);
+        // while (wifi.indexOf(":") !== -1) {
+        //     result[wifi.slice(0, wifi.indexOf(":"))] = wifi.slice(wifi.indexOf(":") + 1, wifi.indexOf(";"));
+        //     wifi = wifi.slice(wifi.indexOf(";") + 1);
+        // }
         return result;
     }
 
