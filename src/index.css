@@ -1,6 +1,5 @@
 @layer reset, base, modifiers;
 
 @import url(./styles/reset.css) layer(reset);
-@import url(./styles/fonts.css) layer(base);
 @import url(./styles/base.css) layer(base);
 @import url(./styles/modifiers.css) layer(modifiers);
