@@ -1,7 +1,7 @@
 export default function Footer() {
     return (
         <footer>
-            <p>&copy; ITPelag 2024 // made by <a href="https://github.com/Akindin">Viktor Kudin</a> and <a href="https://github.com/noidoRG">Rodion Gladyshev</a> </p>
+            <p>&copy; ITPelag 2024 / <a href="https://github.com/Akindin">Кудин Виктор</a> и <a href="https://github.com/noidoRG">Гладышев Родион</a> </p>
         </footer>
     );
 };
