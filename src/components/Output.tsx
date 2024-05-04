@@ -6,17 +6,17 @@ import copy_icon from '../img/copy_icon.svg';
 export default function Output({ content }: { content: string }) {
     function copyToClipboard(event: MouseEvent) {
         const button = event.target as HTMLButtonElement;
-        const copiedText = document.querySelector(`[data-id=${button.dataset.for}`)?.textContent;
-        console.log(document.querySelector(`[data-id=${button.dataset.for}`));
+        const copiedText = document.querySelector(`[data-id='${button.dataset.for}'`)?.textContent;
+        console.log(document.querySelector(`[data-id='${button.dataset.for}'`));
         navigator.clipboard.writeText(copiedText ?? "undefined");
     }
 
     function mapEntries([key, value]: [string, string]) {
         function getValue() {
             if (key === "Ссылка") {
-                return <ruby> <a href={value} target="_blank" rel="noreferrer">{value} </a><rp>(</rp><rt>{key}</rt><rp>)</rp> </ruby>
+                return <a href={value} target="_blank" rel="noreferrer" className="nowrap">{value}</a>
             } else {
-                return <ruby> {value} <rp>(</rp><rt>{key}</rt><rp>)</rp> </ruby>
+                return <span className="nowrap">{value}</span>
             }
         }
 
@@ -31,7 +31,7 @@ export default function Output({ content }: { content: string }) {
         return (
             <li key={key}>
                 <div className="output_item">
-                    {getValue()}
+                    <ruby> <span data-id={key}>{getValue()}</span> <rp>(</rp><rt>{key}</rt><rp>)</rp> </ruby>
                     <img onClick={copyToClipboard} data-for={key} src={copy_icon} alt="Скопировать в буфер обмена" />
                 </div>
             </li>

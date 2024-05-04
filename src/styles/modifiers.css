@@ -10,3 +10,6 @@ dialog[open] {
     display: none;
 }
 
+.nowrap {
+    text-wrap: nowrap;
+}
