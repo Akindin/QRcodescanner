@@ -35,6 +35,7 @@ export default function Main() {
             const interval = setInterval(() => {
                 if (videoRef !== null) {
                     clearInterval(interval);
+                    clearTimeout(timeout);
                     resolve()
                 }
             }, 100);
