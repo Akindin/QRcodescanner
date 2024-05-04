@@ -1,29 +1,40 @@
 import parseUrl from "parse-url";
 import { MouseEvent } from "react";
+import copy_icon from '../img/copy_icon.svg';
 
 
 export default function Output({ content }: { content: string }) {
     function copyToClipboard(event: MouseEvent) {
         const button = event.target as HTMLButtonElement;
         const copiedText = document.querySelector(`[data-id=${button.dataset.for}`)?.textContent;
+        console.log(document.querySelector(`[data-id=${button.dataset.for}`));
         navigator.clipboard.writeText(copiedText ?? "undefined");
     }
 
     function mapEntries([key, value]: [string, string]) {
         function getValue() {
             if (key === "Ссылка") {
-                return <a href={value} target="_blank" rel="noreferrer">{value}</a>
+                return <ruby> <a href={value} target="_blank" rel="noreferrer">{value} </a><rp>(</rp><rt>{key}</rt><rp>)</rp> </ruby>
             } else {
-                return <>{value}</>
+                return <ruby> {value} <rp>(</rp><rt>{key}</rt><rp>)</rp> </ruby>
             }
         }
 
+        // return (
+        //     <tr key={key}>
+        //         <td>{key}</td>
+        //         <td data-id={key}>{getValue()}</td>
+        //         <td><img onClick={copyToClipboard} data-for={key} src={copy_icon} alt="Скопировать в буфер обмена" /></td>
+        //     </tr>
+        // )
+
         return (
-            <tr key={key}>
-                <td>{key}</td>
-                <td data-id={key}>{getValue()}</td>
-                <td><button onClick={copyToClipboard} data-for={key}>Скопировать в буфер обмена</button></td>
-            </tr>
+            <li key={key}>
+                <div className="output_item">
+                    {getValue()}
+                    <img onClick={copyToClipboard} data-for={key} src={copy_icon} alt="Скопировать в буфер обмена" />
+                </div>
+            </li>
         )
     }
 
@@ -127,11 +138,10 @@ export default function Output({ content }: { content: string }) {
 
     return (
         <output>
-            <table>
-                <tbody>
-                    {getTSX()}
-                </tbody>
-            </table>
+            <ul>
+                {getTSX()}
+            </ul>
         </output>
+
     )
 }
