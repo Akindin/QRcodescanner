@@ -30,14 +30,12 @@ export default function FileInput({ onFileAccepted, onFileRejected }: { onFileAc
             if (file!.size > 1024 ** 3 * 8) {
                 errorMessage = "Ошибка!\nФайл слишком большой\nмаксимальный размер файла 1 Гб."
             } else {
-                switch (file!.type) {
-                    case "image/png":
-                    case "image/jpeg":
-                    case "image/jpg":
-                        success = true;
-                        break;
-                    default:
-                        errorMessage = "Ошибка!\nЗагруженый файл\nнекоррктного формата.";
+                const allowedFileTypes = ["image/png", "image/jpeg", "image/jpg"];
+
+                if (allowedFileTypes.includes(file!.type)) {
+                    success = true;
+                } else {
+                    errorMessage = "Ошибка!\nЗагруженый файл\nнекоррктного формата.";
                 }
             }
         }
