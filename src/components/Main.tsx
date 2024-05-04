@@ -60,11 +60,9 @@ export default function Main() {
             const context = canvas.getContext("2d", {
                 willReadFrequently: true
             });
-            console.log(width);
-            console.log(height);
 
             while (context && video) {
-                context.drawImage(video, 0, 0, width ?? 200, height ?? 200);
+                context.drawImage(video, 0, 0, width, height);
                 yield await readQRCode(context.getImageData(0, 0, width, height), 100);
             }
         }
