@@ -1,17 +1,17 @@
 import { useEffect, useRef } from "react";
 import debounce from "./../utils/debounce";
 
+type ValiditySuccess = {
+    success: true
+}
+type ValidityError = {
+    success: false,
+    errorMessage: string
+}
+
+type ValidityReport = ValiditySuccess | ValidityError;
 
 export default function FileInput({ onFileAccepted, onFileRejected }: { onFileAccepted: (image: File) => void, onFileRejected: (message: string) => void }) {
-    type ValiditySuccess = {
-        success: true
-    }
-    type ValidityError = {
-        success: false,
-        errorMessage: string
-    }
-
-    type ValidityReport = ValiditySuccess | ValidityError;
 
     const inputRef = useRef<HTMLInputElement>(null);
     const dropdownOverlayRef = useRef<HTMLDialogElement>(null);
