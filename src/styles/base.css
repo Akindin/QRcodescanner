@@ -1,6 +1,12 @@
 @import url(./header.css);
 @import url(./footer.css);
 
+body * {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+
 body {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
@@ -75,25 +81,22 @@ main {
 .button {
   background-color: #808080;
   border: 1px solid #808080;
+  transition: 300ms;
 }
 
 .button:hover {
   background-color: #606060;
 }
 
-/* Hide the default file input */
-#open_camera {
-  display: none;
-}
 
 .open_camera {
   background-color: #e5322d;
   border: 1px solid #e5322d;
 }
 
-.open_camera:hover {
+.open_camera:hover,
+.open_camera:active {
   background-color: #c00;
-
 }
 
 main .output_box {
@@ -155,13 +158,13 @@ output ul {
   font-size: 1.5em;
 } */
 
-output ul li {
+output li {
   justify-content: space-evenly;
   align-items: center;
   border-block-end: 1px #606060 solid;
 }
 
-output ul li:last-child {
+output li:last-child {
   border: none;
 }
 
@@ -172,21 +175,28 @@ output ul li:last-child {
   border-radius: 0.25em;
 } */
 
-output ul li ruby {
+output li ruby * {
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+output li ruby {
   overflow-x: auto;
   text-align: left;
   padding-left: 0.25em;
 }
 
-output ul li ruby rt {
+
+output li ruby rt {
   text-align: left;
   color: #000;
+
   cursor: default;
 }
 
-output ul li img {
+output li img {
   max-height: 100%;
-  padding: 0.25em 0.25em 0.25em 0;
+  padding: 0.25em;
 }
 
 .output_item {
