@@ -3,9 +3,12 @@ export default function StreamInput({ onStreamReceived, onStreamRejected }: { on
     async function getStream(): Promise<MediaStream | string> {
         try {
             return await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" }, audio: false })
-        } catch (e) {
-            const error = e as Error;
-            return error.message;
+        } catch (error) {
+            if (error instanceof Error) {
+                return error.message;
+            } else {
+                return "Ошибка: " + error;
+            }
         }
     }
 

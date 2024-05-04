@@ -58,7 +58,7 @@ export default function FileInput({ onFileAccepted, onFileRejected }: { onFileAc
             const validityReport = getValidityReport(files)
             if (validityReport.success) {
                 /* files already validated to have exactly one item */
-                onFileAccepted(files.item(0) as File);
+                onFileAccepted(files.item(0)!);
             } else {
                 inputRef.current!.value = "";
                 onFileRejected(validityReport.errorMessage);
