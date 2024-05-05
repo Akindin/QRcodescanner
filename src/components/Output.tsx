@@ -20,14 +20,6 @@ export default function Output({ content }: { content: string }) {
             }
         }
 
-        // return (
-        //     <tr key={key}>
-        //         <td>{key}</td>
-        //         <td data-id={key}>{getValue()}</td>
-        //         <td><img onClick={copyToClipboard} data-for={key} src={copy_icon} alt="Скопировать в буфер обмена" /></td>
-        //     </tr>
-        // )
-
         return (
             <li key={key}>
                 <div className="output_item">
