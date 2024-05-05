@@ -36,7 +36,7 @@ export default function Main() {
                 if (videoRef !== null) {
                     clearInterval(interval);
                     clearTimeout(timeout);
-                    resolve()
+                    resolve();
                 }
             }, 100);
 
