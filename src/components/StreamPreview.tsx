@@ -1,4 +1,4 @@
-import { useEffect, forwardRef, type ForwardedRef, type MutableRefObject } from "react";
+import { useEffect, forwardRef, type ForwardedRef } from "react";
 
 type StreamPreviewProps = { stream: MediaStream };
 
