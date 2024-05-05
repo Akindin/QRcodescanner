@@ -23,7 +23,7 @@ export default function StreamInput({ onStreamReceived, onStreamRejected }: { on
 
     return (
         <>
-            <button className="button open_camera" onClick={handleClick}>Turn On the Camera</button>
+            <button className="button open_camera" onClick={handleClick}>Включить камеру</button>
         </>
     )
 }

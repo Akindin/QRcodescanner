@@ -102,12 +102,12 @@ export default function FileInput({ onFileAccepted, onFileRejected }: { onFileAc
 
     return (
         <>
-            <label htmlFor="load_file" className="button">Select a File</label>
+            <label htmlFor="load_file" className="button">Загрузить файл</label>
             <input id="load_file" type="file" onChange={handleChange} ref={inputRef} hidden />
             <dialog ref={dropdownOverlayRef} className="dropdown_overlay">
-                Drag and drop the file anywhere on the screen.
+                Перетащите файл в любое место экрана.
                 <br />
-                Valid extensions: PNG, JPEG, JPG.
+                Допустимые расширения: PNG, JPEG, JPG.
             </dialog>
         </>
 

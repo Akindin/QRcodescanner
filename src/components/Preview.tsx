@@ -9,7 +9,7 @@ export default forwardRef<HTMLVideoElement, PreviewProps>(function Preview({ pre
         return (
             <section className="preview">
                 <p>
-                    In order to scan the QR code, please select a file or turn on the camera on your device.
+                    Чтобы отсканировать QR-код, пожалуйста, загрузите, либо перетяните файл с изображением или включите камеру на вашем устройстве. Допустимые расширения файлов: PNG, JPEG, JPG.
                 </p>
             </section>
         )

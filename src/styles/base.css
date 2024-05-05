@@ -1,4 +1,3 @@
-
 @import url(./header.css);
 @import url(./footer.css);
 
@@ -23,7 +22,7 @@ main {
   height: 100%;
 }
 
-main .preview {
+.preview {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,14 +36,14 @@ main .preview {
   margin-top: 2em;
 }
 
-main .preview>p {
+.preview>p {
   color: #606060;
   font-style: italic;
   text-overflow: clip;
   font-size: 2em;
 }
 
-main .preview :only-child {
+.preview :only-child {
   max-height: 90%;
   max-width: 90%;
 }
@@ -118,9 +117,6 @@ main .output_box>p {
   text-align: justify;
 }
 
-
-
-
 .dropdown_overlay {
   overflow: visible;
   text-align: center;
@@ -140,8 +136,95 @@ main .output_box>p {
   background: rgba(0, 0, 0, 0.5);
 }
 
+
+output ul {
+  display: flex;
+  list-style: none;
+  flex-direction: column;
+  width: 100%;
+  border: 1px #606060 solid;
+  border-radius: 0.25em;
+  font-size: 1.5em;
+}
+
+
+/* output table {
+  width: 100%;
+  border: 1px #606060 solid;
+  border-radius: 0.25em;
+  font-size: 1.5em;
+} */
+
+output ul li {
+  justify-content: space-evenly;
+  align-items: center;
+  border-block-end: 1px #606060 solid;
+}
+
+output ul li:last-child {
+  border: none;
+}
+
+
+/* output table tr {
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: 0.25em;
+} */
+
+output ul li ruby {
+  overflow-x: auto;
+  text-align: left;
+  padding-left: 0.25em;
+}
+
+output ul li ruby rt {
+  text-align: left;
+  color: #000;
+  cursor: default;
+}
+
+output ul li img {
+  max-height: 100%;
+  padding: 0.25em 0.25em 0.25em 0;
+}
+
+.output_item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.output_item img {
+  width: 2em;
+  cursor: pointer;
+}
+
+/* td button {
+  max-height: 100%;
+  width: 100%;
+} */
+
+/* td button img {
+  width: inherit;
+  max-width: 2em;
+  min-width: 1em;
+
+  aspect-ratio: 1/1;
+} */
+
 @media(max-width: 1000px) {
   .dropdown_overlay {
     font-size: 2em;
+  }
+
+  .preview {
+    text-align: center;
+
+  }
+
+  .preview p {
+    font-size: 1em;
   }
 }
