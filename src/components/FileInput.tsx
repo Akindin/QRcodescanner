@@ -1,15 +1,10 @@
 import { useEffect, useRef } from "react";
 import debounce from "./../utils/debounce";
 
-type ValiditySuccess = {
-    success: true
-}
-type ValidityError = {
-    success: false,
+type ValidityReport = {
+    success: boolean,
     errorMessage: string
-}
-
-type ValidityReport = ValiditySuccess | ValidityError;
+};
 
 export default function FileInput({ onFileAccepted, onFileRejected }: { onFileAccepted: (image: File) => void, onFileRejected: (message: string) => void }) {
 
@@ -40,14 +35,9 @@ export default function FileInput({ onFileAccepted, onFileRejected }: { onFileAc
             }
         }
 
-
-        if (errorMessage === "") {
-            return { success } as { success: true };
-        } else {
-            return {
-                success,
-                errorMessage: errorMessage
-            }
+        return {
+            success,
+            errorMessage: errorMessage
         }
     }
 
