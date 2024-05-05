@@ -15,7 +15,7 @@ header {
 
 }
 
-header > img {
+header img {
     width: auto;
     height: auto;
     max-width: 100%;
@@ -24,7 +24,7 @@ header > img {
 }
 
 
-header .logo {
+.logo {
     display: flex;
     flex-direction: row;
     justify-content: start;
@@ -33,9 +33,15 @@ header .logo {
 }
 
 
-header .logo .logo-text {
+.logo .logo-text {
     font-size: 2rem;
     padding-left: 0.75em;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: bold;
+}
+
+@media(max-width: 1000px) {
+    .logo .logo-text {
+        font-size: 1.5em;
+    }
 }

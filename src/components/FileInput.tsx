@@ -2,17 +2,17 @@
 import { useEffect, useRef } from "react";
 import debounce from "./../utils/debounce";
 
+type ValiditySuccess = {
+    success: true
+}
+type ValidityError = {
+    success: false,
+    errorMessage: string
+}
+
+type ValidityReport = ValiditySuccess | ValidityError;
 
 export default function FileInput({ onFileAccepted, onFileRejected }: { onFileAccepted: (image: File) => void, onFileRejected: (message: string) => void }) {
-    type ValiditySuccess = {
-        success: true
-    }
-    type ValidityError = {
-        success: false,
-        errorMessage: string
-    }
-
-    type ValidityReport = ValiditySuccess | ValidityError;
 
     const inputRef = useRef<HTMLInputElement>(null);
     const dropdownOverlayRef = useRef<HTMLDialogElement>(null);
@@ -31,14 +31,12 @@ export default function FileInput({ onFileAccepted, onFileRejected }: { onFileAc
             if (file!.size > 1024 ** 3 * 8) {
                 errorMessage = "Ошибка!\nФайл слишком большой\nмаксимальный размер файла 1 Гб."
             } else {
-                switch (file!.type) {
-                    case "image/png":
-                    case "image/jpeg":
-                    case "image/jpg":
-                        success = true;
-                        break;
-                    default:
-                        errorMessage = "Ошибка!\nЗагруженый файл\nнекоррктного формата.";
+                const allowedFileTypes = ["image/png", "image/jpeg", "image/jpg"];
+
+                if (allowedFileTypes.includes(file!.type)) {
+                    success = true;
+                } else {
+                    errorMessage = "Ошибка!\nЗагруженый файл\nнекоррктного формата.";
                 }
             }
         }
@@ -59,7 +57,7 @@ export default function FileInput({ onFileAccepted, onFileRejected }: { onFileAc
             const validityReport = getValidityReport(files)
             if (validityReport.success) {
                 /* files already validated to have exactly one item */
-                onFileAccepted(files.item(0) as File);
+                onFileAccepted(files.item(0)!);
             } else {
                 inputRef.current!.value = "";
                 onFileRejected(validityReport.errorMessage);
@@ -105,12 +103,12 @@ export default function FileInput({ onFileAccepted, onFileRejected }: { onFileAc
 
     return (
         <>
-            <label htmlFor="load_file" className="button">Select a File</label>
+            <label htmlFor="load_file" className="button">Загрузить файл</label>
             <input id="load_file" type="file" onChange={handleChange} ref={inputRef} hidden />
             <dialog ref={dropdownOverlayRef} className="dropdown_overlay">
-                Drag and drop the file anywhere on the screen.
+                Перетащите файл в любое место экрана.
                 <br />
-                Valid extensions: PNG, JPEG, JPG.
+                Допустимые расширения: PNG, JPEG, JPG.
             </dialog>
         </>
 

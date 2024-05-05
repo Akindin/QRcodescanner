@@ -1,11 +1,15 @@
 import PreviewContent from "./../utils/PreviewContent";
+import StreamPreview from "./StreamPreview";
+import { forwardRef } from 'react';
 
-export default function Preview({ previewContent }: { previewContent: PreviewContent | undefined }) {
+type PreviewProps = { previewContent: PreviewContent | undefined };
+
+export default forwardRef<HTMLVideoElement, PreviewProps>(function Preview({ previewContent }: { previewContent: PreviewContent | undefined }, ref) {
     if (!previewContent) {
         return (
             <section className="preview">
                 <p>
-                    In order to scan the QR code, please select a file or turn on the camera on your device.
+                    Чтобы отсканировать QR-код, пожалуйста, загрузите, либо перетяните файл с изображением или включите камеру на вашем устройстве. Допустимые расширения файлов: PNG, JPEG, JPG.
                 </p>
             </section>
         )
@@ -28,6 +32,12 @@ export default function Preview({ previewContent }: { previewContent: PreviewCon
                     <img src={imageSrc} alt="Загруженное изображение" />
                 </section>
             )
+        case "stream":
+            return (
+                <section className="preview">
+                    <StreamPreview stream={previewContent.content} ref={ref} />
+                </section>
+            )
     }
 
-}
+})
