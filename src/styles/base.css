@@ -36,10 +36,10 @@ main {
   padding-right: 1.25em;
   height: 40vh;
   width: 100%;
+  margin-top: 2em;
   border: lightgray 0.25em dashed;
   border-radius: 1em;
   background-color: #f4f4f4;
-  margin-top: 2em;
 }
 
 .preview>p {
@@ -148,6 +148,7 @@ output ul {
   border: 1px #606060 solid;
   border-radius: 0.25em;
   font-size: 1.5em;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 
@@ -209,6 +210,12 @@ output li img {
 .output_item img {
   width: 2em;
   cursor: pointer;
+  transition: 300ms;
+}
+
+.output_item img:hover,
+.output_item img:active {
+  opacity: 70%;
 }
 
 /* td button {
