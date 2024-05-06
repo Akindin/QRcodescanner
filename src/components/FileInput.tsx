@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import debounce from "./../utils/debounce";
+import load_file_icon from "./../img/load_file_icon.svg"
 
 type ValidityReport = {
     success: boolean,
@@ -92,7 +93,9 @@ export default function FileInput({ onFileAccepted, onFileRejected }: { onFileAc
 
     return (
         <>
-            <label htmlFor="load_file" className="button">Загрузить файл</label>
+            <label htmlFor="load_file" className="button">
+                <img src={load_file_icon} alt="" />
+                Загрузить файл</label>
             <input id="load_file" type="file" onChange={handleChange} ref={inputRef} hidden />
             <dialog ref={dropdownOverlayRef} className="dropdown_overlay">
                 Перетащите файл в любое место экрана.

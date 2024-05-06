@@ -1,3 +1,6 @@
+import camera_icon from "./../img/camera_icon.svg"
+
+
 export default function StreamInput({ onStreamReceived, onStreamRejected }: { onStreamReceived: (stream: MediaStream) => void, onStreamRejected: (message: string) => void }) {
 
     async function getStream(): Promise<MediaStream | string> {
@@ -23,7 +26,9 @@ export default function StreamInput({ onStreamReceived, onStreamRejected }: { on
 
     return (
         <>
-            <button className="button open_camera" onClick={handleClick}>Включить камеру</button>
+            <button className="button open_camera" onClick={handleClick}>
+                <img src={camera_icon} alt="Камера" />
+                Включить камеру</button>
         </>
     )
 }
