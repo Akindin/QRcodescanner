@@ -1,16 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useRef } from "react";
 import debounce from "./../utils/debounce";
+import load_file_icon from "./../img/load_file_icon.svg"
 
-type ValiditySuccess = {
-    success: true
-}
-type ValidityError = {
-    success: false,
+type ValidityReport = {
+    success: boolean,
     errorMessage: string
-}
-
-type ValidityReport = ValiditySuccess | ValidityError;
+};
 
 export default function FileInput({ onFileAccepted, onFileRejected }: { onFileAccepted: (image: File) => void, onFileRejected: (message: string) => void }) {
 
@@ -41,14 +37,9 @@ export default function FileInput({ onFileAccepted, onFileRejected }: { onFileAc
             }
         }
 
-
-        if (errorMessage === "") {
-            return { success } as { success: true };
-        } else {
-            return {
-                success,
-                errorMessage: errorMessage
-            }
+        return {
+            success,
+            errorMessage: errorMessage
         }
     }
 
@@ -103,7 +94,9 @@ export default function FileInput({ onFileAccepted, onFileRejected }: { onFileAc
 
     return (
         <>
-            <label htmlFor="load_file" className="button">Загрузить файл</label>
+            <label htmlFor="load_file" className="button">
+                <img src={load_file_icon} alt="" />
+                Загрузить файл</label>
             <input id="load_file" type="file" onChange={handleChange} ref={inputRef} hidden />
             <dialog ref={dropdownOverlayRef} className="dropdown_overlay">
                 Перетащите файл в любое место экрана.
