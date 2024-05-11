@@ -64,30 +64,42 @@ main {
 }
 
 .button {
-  display: inline-block;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   padding: 10px 20px;
-  color: #ffffff;
-  border: none;
-  border-radius: 0.5em;
-  cursor: pointer;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  font-size: 2em;
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
   min-width: 48.5%;
-}
 
-
-.button {
-  background-color: #808080;
   border: 1px solid #808080;
+  border-radius: 0.5em;
+  font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
+  font-size: 2em;
+
+  color: #ffffff;
+  background-color: #808080;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+
   transition: 300ms;
+  cursor: pointer;
 }
 
 .button:hover {
   background-color: #606060;
 }
 
+
+.button img {
+  /* display: flex; */
+  filter: invert(1);
+  vertical-align: middle;
+  justify-content: center;
+  padding-right: 0.5em;
+  /* flex-direction: row; */
+  /* justify-content: space-between; */
+  /* align-items: center; */
+  max-height: 2em;
+}
 
 .open_camera {
   background-color: #e5322d;
@@ -149,6 +161,10 @@ output ul {
   border-radius: 0.25em;
   font-size: 1.5em;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+output ul:empty {
+  border: none;
 }
 
 
@@ -244,4 +260,11 @@ output li img {
   .preview p {
     font-size: 1em;
   }
+
+  .buttons {
+    flex-direction: column;
+    gap: 2em;
+    align-items: normal;
+  }
+
 }
